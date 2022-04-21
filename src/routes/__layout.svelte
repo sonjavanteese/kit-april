@@ -27,29 +27,23 @@
 </script>
 
 
-<Modal let:payload let:close>
-  {#if $user}
-    <UserPanel {close} />
-  {:else}
-    <SignIn {close} />
-  {/if}
-</Modal>
+
 
 <Toasts />
 
-<header class="bg-black bg-opacity-5 shadow">
+<header class="bg-black bg-opacity-70 text-white shadow">
   <nav class="flex items-center min-h-14"> 
       <button class="flex items-center justify-center h-14 w-14 hover:bg-black hover:bg-opacity-5">
         <i class="gg-menu-grid-o"></i>
       </button>
       <div class="flex-grow">
-        <span class="font-thin text-xl px-1">App-Nwp</span>
+        <a href="/" class="font-thin text-xl px-1">App-Nwp</a>
       </div>
       <button class="flex items-center justify-center h-14 w-14 hover:bg-black hover:bg-opacity-5" on:click={() => openModal("Rabbit")}>
         {#if $user}
         <i class="gg-user text-blue-700"></i>
         {:else}
-        <i class="gg-user-add text-red-700"></i>
+        <i class="gg-user-add text-red-500"></i>
         {/if}
       </button>
   </nav>

@@ -1,12 +1,12 @@
 export const appData = [
   {
     "id": 0,
-    "slug": "start",
+    "slug": "home",
     "head": {
       "titel": "Nwp-Studio",
-      "sub": "Nwp-App Home",
-      "bg": "https://nwp-cgn.de/img/poser/imgA02.png",
-      "link": "<a class=\"inline-block py-4 px-8 text-xs text-blue-600 hover:text-white font-semibold leading-none bg-white hover:bg-blue-600 border hover:border-white rounded transition duration-300\" href=\"/user\">Profil</a>"
+      "sub": "Application Home",
+      "bg": "https://nwp-cgn.de/img/poser/imgA01.png",
+      "uri": "img/compass.png"
     },
     "link": {
       "path": "/",
@@ -16,17 +16,17 @@ export const appData = [
   },
   {
     "id": 1,
-    "slug": "user",
+    "slug": "start",
     "head": {
-      "titel": "Nwp-User",
-      "sub": "User-Profil",
-      "bg": "https://nwp-cgn.de/img/poser/imgA03.png",
-      "link": "<a class=\"inline-block py-4 px-8 text-xs text-blue-600 hover:text-white font-semibold leading-none bg-white hover:bg-blue-600 border hover:border-white rounded transition duration-300\" href=\"/\">Start</a>"
+      "titel": "Nwp-Studio",
+      "sub": "Application Start Page",
+      "bg": "https://nwp-cgn.de/img/poser/imgA02.png",
+      "uri": "img/device-computer.png"
     },
     "link": {
-      "path": "/user",
-      "name": "User",
-      "icon": "user"
+      "path": "/application",
+      "name": "Start",
+      "icon": "home"
     }
   },
   {
@@ -59,16 +59,17 @@ export const appData = [
   },
   {
     "id": 4,
-    "slug": "items",
+    "slug": "user",
     "head": {
-      "titel": "Nwp-Studio",
-      "sub": "Items",
-      "bg": "https://nwp-cgn.de/img/poser/imgA07.png",
+      "titel": "Nwp-User",
+      "sub": "User-Profil",
+      "bg": "https://nwp-cgn.de/img/poser/imgA03.png",
+      "link": "<a class=\"inline-block py-4 px-8 text-xs text-blue-600 hover:text-white font-semibold leading-none bg-white hover:bg-blue-600 border hover:border-white rounded transition duration-300\" href=\"/\">Start</a>"
     },
     "link": {
-      "path": "/items",
-      "name": "Items",
-      "icon": "database"
+      "path": "/user",
+      "name": "User",
+      "icon": "user"
     }
   }
 ];  

@@ -1,11 +1,15 @@
 <script>
-//   import { user } from "$lib/stores";
-//   import { openModal } from "renderless-svelte";
-//   import { fly } from "svelte/transition";
-  const pid = 0;
+  import {user} from '$lib/stores'
+  import { goto } from '$app/navigation'
+  import { browser } from "$app/env"
+  $: if (!$user) {
+      goto('/')
+  }
 </script>
 
-<slot />
+{#if browser}
+    <slot />
+{/if}
 
 <style global>
   .scroller {

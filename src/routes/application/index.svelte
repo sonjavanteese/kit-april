@@ -1,27 +1,49 @@
 <script>
-    import {user} from '$lib/stores'
-    import { goto } from '$app/navigation'
-    import { fly } from 'svelte/transition'
-    $: if (!$user) {
-        goto('/')
-    }
-    const pid = 1
+  import { fly } from "svelte/transition";
+  import device from "../../assets/device-computer.png";
+  const pid = 1;
+  // let { titel, sub, bg, uri } = pageData[pid];
+  const titel = "Nwp-Studio"
+  const sub = "Application Home"
+  const nav = [{
+    name: "Back",
+    path: "/"
+  },
+  {
+    name: "Start",
+    path: "/application/start"
+  }]
 </script>
 
+<section class="flex flex-col h-full w-full md:flex-row">
+  <article
+    class="bg-gray-800 h-full overflow-x-hidden overflow-y-auto w-full
+    md:border-r md:h-auto"
+  >
+    <div
+      class="flex flex-col h-full items-center justify-center px-2 py-2 w-full"
+    >
+      <img src={device} class="opacity-50" width="256" height="256" />
+    </div>
+  </article>
+  <article
+    class="h-full overflow-x-hidden overflow-y-auto relative w-full md:h-auto"
+  >
+    <section
+      class="absolute bg-white flex flex-col inset-0 justify-center px-2 py-2"
+    >
+      <div class="max-w-sm mx-auto px-6 py-6 space-y-4 text-center w-full">
+        <h3 class="font-bold mb-2 text-5xl text-gray-600">{titel ? titel : 'Nwp-Studio'}</h3>
+        <p class="text-lg text-gray-500">{sub ? sub : 'Application'}</p>
+        <div in:fly="{{ x: 250, duration: 600 }}" class="space-x-2"> 
+            {#each nav as {path, name}, i}
+                <a href={path} class="bg-blue-600 hover:bg-blue-700 inline-block px-5 py-2 rounded text-white">
+                    {name}
+                </a>
+            {/each}
+        </div>
 
-<section class="bg-gray-50 flex flex-col h-full justify-center text-gray-500" data-pg-collapsed> 
-    <div class="container mx-auto px-4 relative"> 
-        <div class="flex flex-wrap -mx-4  items-center"> 
-            <div class="mr-auto p-8 w-full md:w-6/12"> 
-                <img src="img/device-computer.png" class="w-64 h-64 mx-auto" alt="Logo"/> 
-            </div>             
-            <div class="p-4 w-full md:w-5/12"> 
-                <h3 class="font-bold mb-2 text-4xl text-gray-800">We Work Together To Play, Have Fun, Design And Create</h3>
-                <p class="mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vitae congue tortor.</p>
-                <div in:fly="{{ x: 250, duration: 600 }}"> <a href="/" class="bg-blue-600 hover:bg-blue-700 inline-block px-5 py-2 rounded text-white">Back To Start</a> 
-                </div>
-            </div>             
-        </div>         
-    </div>     
+      </div>
+    </section>
+  </article>
 </section>
-
