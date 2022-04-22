@@ -1,20 +1,9 @@
 <script>
   import { user } from "$lib/stores";
-  import { openModal, Modal } from "renderless-svelte";
-  import SignIn from '$lib/flow/SignIn.svelte'
-  import UserPanel from "$lib/flow/UserPanel.svelte"
+  import { openModal } from "renderless-svelte";
   import { fly } from "svelte/transition";
   const pid = 0;
 </script>
-
-
-<Modal let:payload let:close>
-  {#if $user}
-    <UserPanel {close} />
-  {:else}
-    <SignIn {close} />
-  {/if}
-</Modal>
 
 <section class="flex flex-col h-full w-full md:flex-row">
   <article
@@ -48,7 +37,7 @@
         {#if $user}
           <div in:fly={{ x: 250, duration: 600 }} class="text-center">
             <a
-              href="/application"
+              href="/app"
               class="bg-blue-700 focus:outline-none focus:ring-blue-300
               font-medium hover:bg-blue-800 px-12 py-3.5 rounded-full
               text-center text-white"

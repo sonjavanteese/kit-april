@@ -2,6 +2,7 @@ body {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    @apply text-gray-600;
   }
   
   #app {
@@ -81,12 +82,18 @@ body {
   }
   
   .input {
-    @apply block w-full px-6 py-2 font-light text-base border border-gray-300 rounded;
+    @apply appearance-none w-full px-4 py-2.5 text-base leading-none bg-white rounded border-gray-200 outline-none focus:outline-none focus:border-gray-400;
   }
-  
+  .input[disabled] {
+    @apply bg-gray-50 text-gray-700 cursor-not-allowed;
+  }
+  .btn[disabled] {
+    @apply cursor-not-allowed;
+  }
   .checkbox {
     @apply h-8 w-8 rounded border-gray-300;
   }
+
   .section {
     @apply container mx-auto px-4;
   }
