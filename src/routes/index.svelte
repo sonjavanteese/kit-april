@@ -1,7 +1,9 @@
 <script>
-  import { user } from "$lib/stores";
+  import { user, _backbtn, _appname } from "$lib/stores";
   import { openModal } from "renderless-svelte";
   import { fly } from "svelte/transition";
+  _backbtn.set(false);
+  _appname.set("Nwp-App");
   const pid = 0;
 </script>
 

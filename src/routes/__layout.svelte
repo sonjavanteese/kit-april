@@ -4,9 +4,10 @@
   import SignIn from '$lib/flow/SignIn.svelte'
   import UserPanel from "$lib/flow/UserPanel.svelte"
   import { supabase } from "$lib/db"
-  import { user } from '$lib/stores'
+  import { user, _backbtn, _appname } from '$lib/stores'
   import Toasts from '$lib/toast/Toasts.svelte';
   import { Modal, openModal } from 'renderless-svelte'
+  import { fade, fly } from 'svelte/transition';
   import { browser } from "$app/env"
   user.set(supabase.auth.user())
 
@@ -37,13 +38,15 @@
 
 <Toasts />
 
-<header class="bg-black bg-opacity-70 text-white shadow">
+<header class="bg-gray-800 text-white shadow">
   <nav class="flex items-center min-h-14"> 
-      <!-- <button class="flex items-center justify-center h-14 w-14 hover:bg-black hover:bg-opacity-5">
-        <i class="gg-menu-grid-o"></i>
-      </button> -->
-      <div class="flex-grow px-4">
-        <a href="/" class="font-thin text-xl px-1">App-Nwp</a>
+      {#if $_backbtn}
+        <button transition:fade on:click={() => history.back()} class="flex items-center justify-center h-14 w-8 pl-2 hover:bg-black hover:bg-opacity-5">
+          <i class="gg-arrow-left"></i>
+        </button>
+      {/if}
+      <div class="flex-grow px-2">
+        <a href="/" class="font-thin text-white text-xl px-1">{$_appname}</a>
       </div>
       <button class="flex items-center justify-center h-14 w-14 hover:bg-black hover:bg-opacity-5" on:click={() => openModal("Rabbit")}>
         {#if $user}
@@ -98,4 +101,5 @@
   @import url('https://css.gg/menu-grid-o.css');
   @import url('https://css.gg/user.css');
   @import url('https://css.gg/user-add.css');
+  @import url('https://css.gg/arrow-left.css');
 </style>

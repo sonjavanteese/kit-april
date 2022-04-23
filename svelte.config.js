@@ -1,8 +1,10 @@
-import { mdsvex } from "mdsvex";
-import mdsvexConfig from "./mdsvex.config.js";
-import adapter from "@sveltejs/adapter-static";
-import preprocess from "svelte-preprocess";
-import WindiCSS from "vite-plugin-windicss";
+import { mdsvex } from 'mdsvex';
+import preprocess from 'svelte-preprocess';
+import WindiCSS from 'vite-plugin-windicss';
+
+import adapter from '@sveltejs/adapter-static';
+
+import mdsvexConfig from './mdsvex.config.js';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -13,7 +15,12 @@ const config = {
   preprocess: [preprocess(), mdsvex(mdsvexConfig)],
 
   kit: {
-    adapter: adapter(),
+    adapter: adapter({
+			fallback: '200.html'
+		}),
+    // paths: {
+    //   base: ""
+    // },
     vite: {
       plugins: [WindiCSS()],
     },

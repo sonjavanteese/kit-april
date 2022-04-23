@@ -4,7 +4,7 @@
   import { supabase } from "$lib/db";
   import { slide } from "svelte/transition";
   const titel = "Nwp-Studio";
-  const sub = "Data-List";
+  const sub = "BB Classic-Collection";
   let oda = false;
   let daten = [];
   let newTask = "";
@@ -12,9 +12,9 @@
   const getAllDataElms = async () => {
     try {
       let { data, error } = await supabase
-        .from("datalist")
+        .from("bb_classics")
         .select("*")
-        .eq("uid", $user.id).order("id", { ascending: oda });
+        .order("id", { ascending: oda });
       daten = data;
     } catch (err) {
       console.log(err);
@@ -33,43 +33,7 @@
       console.log(err);
     }
   };
-  // id,created_at,titel,group,info,daten,uid,op
-  const updateDataEl = async (dataEl) => {
-    try {
-      const { data, error } = await supabase
-        .from("datalist")
-        .update({
-          titel: dataEl.titel,
-          group: dataEl.group,
-          info: dataEl.info,
-          daten: dataEl.daten,
-          op: dataEl.op,
-        })
-        .eq("id", dataEl.id);
-      await getAllDataElms();
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  const deleteDataEl = async (dataEl) => {
-    try {
-      //   const { data, error } = await supabase
-      //     .from("datalist")
-      //     .delete()
-      //     .eq("id", dataEl.id);
-      console.log("Delete", dataEl.id);
-      await getAllDataElms();
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter" && newTask !== "") {
-      addNewDataEl();
-    }
-  };
-
+  // titel,info,tags,fileurl,screen,thumb,id
   let promise = getAllDataElms();
   $: _order.set(oda);
 </script>
@@ -99,9 +63,9 @@
           <div
             class="bg-white rounded-lg border border-gray-200 w-full text-gray-600"
           >
-            {#each daten as { id, created_at, titel, group, info, daten, uid, op }}
+            {#each daten as { titel,info,tags,fileurl,screen,thumb,id }}
               <a
-                href="/app/dlist/{id}"
+                href="/app/classic/{id}"
                 class="
                         block
                         px-4
@@ -118,7 +82,7 @@
                         cursor-pointer
                         "
               >
-                {titel} | {group} | {info}
+                {titel} | {tags} | {info}
               </a>
             {/each}
           </div>

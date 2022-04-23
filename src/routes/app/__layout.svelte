@@ -1,7 +1,9 @@
 <script>
-  import {user} from '$lib/stores'
+  import {user, _backbtn, _appname} from '$lib/stores'
   import { goto } from '$app/navigation'
   import { browser } from "$app/env"
+  _backbtn.set(true)
+  _appname.set("Nwp-Studio")
   $: if (!$user) {
       goto('/')
   }

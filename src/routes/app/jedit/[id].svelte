@@ -1,6 +1,7 @@
 <script>
   import Loader from "$lib/flow/Loader.svelte";
   import { supabase } from "$lib/db";
+  import { _editop } from "$lib/stores";
   import { slide } from "svelte/transition";
   import {
     TabControl,
@@ -20,6 +21,9 @@
       let { data, error } = await query;
       if (data) {
         selected = data;
+        $_editop = data.option;
+        $_editop.schema = data.schema;
+        $_editop.startval = data.startval;
       } else {
         throw new Error(error, data);
       }
@@ -31,36 +35,33 @@
   };
 
   promise = fetchDetail();
+
+
+  $: console.log($_editop.schema)
 </script>
 
+
 <section
-  transition:slide
-  class="h-full overflow-x-hidden overflow-y-auto w-full"
+  transition:slide={{duration: 500}}
+  class="h-full overflow-x-hidden overflow-y-scroll w-full"
 >
-  <header class="container mx-auto px-4">
-    <nav class="flex items-center space-x-2">
-      <button on:click={() => history.back()}>Back</button>
-    </nav>
-  </header>
-  <hr />
   {#await promise}
     <Loader />
   {:then payload}
-    <section
-      class="container mx-auto px-4 bg-white flex flex-col py-4 space-y-0"
-    >
+  <section class="w-full max-w-lg mx-auto px-4 py-4 space-y-4">
       <hgroup>
         <h4>Schema Details</h4>
         <small>{selected.titel}</small>
       </hgroup>
 
       <TabControl>
-        <div class="flex" slot="tabs" let:tabs>
+        <div class="flex flex-row" slot="tabs" let:tabs>
           {#each tabs as { active, disabled, payload, select }}
             <button
               class="
                 block font-medium text-sm
                 leading-tight
+                w-full
                 transition transition-all duration-400
                 border-x-0 border-t-0 border-b-2
                 px-6
@@ -78,7 +79,7 @@
             >
           {/each}
         </div>
-        <div class="tab">
+        <div class="mt-4">
           <TabControlItem id="S" payload="Info" active>
             <div class="py-2">
               <ul class="list-none">
@@ -95,6 +96,9 @@
                   {selected.info}
                 </li>
               </ul>
+              <div class="mt-6">
+                <a href="/app/jedit/editor/{$page.params.id}" class="btn btn-blue">Open in Editor</a>
+              </div>
             </div>
           </TabControlItem>
           <TabControlItem id="R" payload="Schema">
@@ -136,11 +140,11 @@
               >
             </div>
           </TabControlItem>
-
         </div>
       </TabControl>
     </section>
   {:catch err}
     <pre>{JSON.stringify(err)}</pre>
   {/await}
+
 </section>

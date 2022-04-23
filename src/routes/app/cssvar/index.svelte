@@ -36,14 +36,7 @@
   transition:slide
   class="h-full overflow-x-hidden overflow-y-auto w-full"
 >
-  <header class="container mx-auto px-4">
-    <nav class="flex items-center space-x-2">
-      <button on:click={() => history.back()}>Back</button>
-
-      <button on:click={reload}>Reload</button>
-    </nav>
-  </header>
-  <hr />
+ 
   {#await promise}
     <Loader />
   {:then payload}

@@ -6,16 +6,16 @@
   
   const nav = [
   {
-    name: "Home",
-    path: "/"
-  },
-  {
     name: "Json-Editor",
     path: "/app/jedit"
   },
   {
     name: "Data-List",
     path: "/app/dlist"
+  },
+  {
+    name: "BB-Classic",
+    path: "/app/classic"
   },
   {
     name: "Css-Vars",

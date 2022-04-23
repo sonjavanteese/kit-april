@@ -33,22 +33,15 @@
   promise = fetchData();
 </script>
 
-<section
-  transition:slide
-  class="h-full overflow-x-hidden overflow-y-auto w-full"
->
-  <header class="container mx-auto px-4">
-    <nav class="flex items-center space-x-2">
-      <button on:click={() => history.back()}>Back</button>
 
-      <button on:click={reload}>Reload</button>
-    </nav>
-  </header>
-  <hr />
+<section
+  transition:slide={{duration: 500}}
+  class="h-full overflow-x-hidden overflow-y-scroll w-full"
+>
   {#await promise}
     <Loader />
   {:then payload}
-    <section class="container mx-auto px-4 bg-white flex flex-col py-4 space-y-4">
+    <section class="w-full max-w-lg mx-auto px-4 py-4 space-y-4">
       <hgroup>
         <h4>Json Editor Schemata</h4>
       </hgroup>

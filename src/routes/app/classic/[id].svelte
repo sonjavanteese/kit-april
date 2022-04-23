@@ -13,7 +13,7 @@
   const getData = async () => {
     try {
       let { data, error } = await supabase
-        .from("datalist")
+        .from("bb_classics")
         .select("*")
         .eq("id", $page.params.id)
         .single();
@@ -22,6 +22,7 @@
       console.log(err);
     }
   };
+  // titel,info,tags,fileurl,screen,thumb,id
   const updateDataEl = async (dataEl) => {
     loading = true;
     try {
@@ -29,10 +30,11 @@
         .from("datalist")
         .update({
           titel: dataEl.titel,
-          group: dataEl.group,
+          tags: dataEl.tags,
           info: dataEl.info,
-          daten: dataEl.daten,
-          op: dataEl.op,
+          fileurl: dataEl.fileurl,
+          thumb: dataEl.thumb,
+          screen: dataEl.screen,
         })
         .eq("id", dataEl.id);
       await getData();
@@ -88,25 +90,24 @@
             class="input"
             type="text"
             value={dat.titel}
-            placeholder="Enter text"
+            placeholder="Titel"
             on:blur={(e) => {
                 dat.titel = e.currentTarget.value;
             }}
             disabled={!edit} 
           />
-
-          <select
-            value={dat.group}
-            on:blur={(e) => {
-                dat.group = e.currentTarget.value;
-            }} 
-            disabled={!edit}
+          <input
             class="input"
-          >
-            <option>Image</option>
-            <option>Video</option>
-            <option>Link</option>
-          </select>
+            type="text"
+            value={dat.tags}
+            placeholder="Tags"
+            on:blur={(e) => {
+                dat.tags = e.currentTarget.value;
+            }}
+            disabled={!edit} 
+          />
+
+
 
           <textarea
             rows="3"
@@ -116,27 +117,38 @@
             disabled={!edit}
             class="input"
           >{dat.info}</textarea>
-          <textarea
-            rows="10"
-            on:blur={(e) => {
-                dat.daten = JSON.parse(e.currentTarget.value);
-            }} 
-            disabled={!edit}
-            class="input"
-          >{JSON.stringify(dat.daten, null, 2)}</textarea>
-          <div class="py-1">
-            <label class="text-gray-600 space-x-4">
-            <input class="checkbox" 
-            checked={dat.op} 
-            on:blur={(e) => {
-                dat.op = e.currentTarget.checked;
-            }} 
-            disabled={!edit}
-            type="checkbox">
-            <span class="text-lg">Show</span>
-          </label>  
-          </div>
 
+<!-- titel,info,tags,fileurl,screen,thumb,id -->
+        <input
+          class="input"
+          type="text"
+          value={dat.fileurl}
+          placeholder="File"
+          on:blur={(e) => {
+              dat.fileurl = e.currentTarget.value;
+          }}
+          disabled={!edit} 
+        />
+        <input
+        class="input"
+        type="text"
+        value={dat.thumb}
+        placeholder="Thumb"
+        on:blur={(e) => {
+            dat.thumb = e.currentTarget.value;
+        }}
+        disabled={!edit} 
+      />
+      <input
+          class="input"
+          type="text"
+          value={dat.screen}
+          placeholder="Screen"
+          on:blur={(e) => {
+              dat.screen = e.currentTarget.value;
+          }}
+          disabled={!edit} 
+        />
           <div class="py-4">
               <button disabled={!edit} class="btn btn-blue" on:click={update}>{loading ? '... loading' : 'Update'}</button>
           </div>
