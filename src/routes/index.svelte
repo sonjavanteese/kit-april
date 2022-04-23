@@ -10,7 +10,7 @@
 <section class="flex flex-col h-full w-full md:flex-row">
   <article
     class="{$user
-      ? 'bg-emerald-800'
+      ? 'bg-gray-700'
       : 'bg-red-800'} h-full overflow-x-hidden overflow-y-auto w-full
     md:border-r md:h-auto"
   >

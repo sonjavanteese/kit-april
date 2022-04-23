@@ -44,7 +44,7 @@
 >
 
 
-  <div class="w-full max-w-lg mx-auto px-4 py-4">
+  <div class="w-full max-w-xl mx-auto px-4 py-4">
     <hgroup class="flex items-center justify-between">
       <h4>{sub}</h4>
       <label class="text-gray-800">
@@ -67,7 +67,8 @@
               <a
                 href="/app/classic/{id}"
                 class="
-                        block
+                        flex
+                        flex-col
                         px-4
                         py-2
                         border-b border-gray-200
@@ -82,7 +83,8 @@
                         cursor-pointer
                         "
               >
-                {titel} | {tags} | {info}
+                 <span class="text-lg">{titel}</span>
+                 <span class="italic">{info}</span> 
               </a>
             {/each}
           </div>
