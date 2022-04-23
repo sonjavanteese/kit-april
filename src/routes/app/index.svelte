@@ -29,7 +29,7 @@
   class="h-full overflow-x-hidden overflow-y-auto w-full"
 >
 
-  <section class="w-full max-w-sm mx-auto px-4 bg-white flex flex-col py-4 space-y-4">
+  <section class="w-full max-w-lg mx-auto px-4 bg-white flex flex-col py-4 space-y-4">
     <hgroup class="text-center py-12">
       <h1>{titel}</h1>
       <h4>{sub}</h4>
